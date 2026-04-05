@@ -1,4 +1,4 @@
-// Global data (must stay outside components)
+// Global data
 const stories = [
   {
     title: "React",
@@ -18,48 +18,47 @@ const stories = [
   },
 ];
 
-// Header Component
-function Header() {
-  return <h1>Hacker News</h1>;
-}
+// Header Component (arrow function - concise body)
+const Header = () => <h1>Hacker News</h1>;
 
-// Search Component
-function Search() {
+// Search Component (arrow function - BLOCK body)
+const Search = () => {
+  const handleChange = (event) => {
+    console.log(event.target.value); // logs input value
+    console.log("User is typing...");
+  };
+
   return (
     <div>
       <label htmlFor="search">Search: </label>
-      <input id="search" type="text" />
+      <input id="search" type="text" onChange={handleChange} />
     </div>
   );
-}
+};
 
-// List Component
-function List() {
-  return (
-    <ul>
-      {stories.map((item) => (
-        <li key={item.objectID}>
-          <span>
-            <a href={item.url}>{item.title}</a>
-          </span>
-          <span> {item.author} </span>
-          <span> {item.num_comments} </span>
-          <span> {item.points} </span>
-        </li>
-      ))}
-    </ul>
-  );
-}
+// List Component (arrow function)
+const List = () => (
+  <ul>
+    {stories.map((item) => (
+      <li key={item.objectID}>
+        <span>
+          <a href={item.url}>{item.title}</a>
+        </span>
+        <span> {item.author} </span>
+        <span> {item.num_comments} </span>
+        <span> {item.points} </span>
+      </li>
+    ))}
+  </ul>
+);
 
-// Main App Component
-function App() {
-  return (
-    <div>
-      <Header />
-      <Search />
-      <List />
-    </div>
-  );
-}
+// App Component (arrow function)
+const App = () => (
+  <div>
+    <Header />
+    <Search />
+    <List />
+  </div>
+);
 
 export default App;
